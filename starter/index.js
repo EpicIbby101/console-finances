@@ -88,50 +88,39 @@ var finances = [
 ];
 
 // TOTAL NUMBER OF MONTHS INCLUDED IN DATASET:
-// We want to create a variable that calculates how many entries in the array.
-const totalMonths = finances.length;
-// We then simply console log the results
-console.log("Total months: ", totalMonths)
+const totalMonths = finances.length; // We want to create a variable that calculates how many entries in the array.
+console.log("Total months: ", totalMonths) // We then simply console log the results
 
 
 // THE NET TOTAL AMOUNT OF PROFIT/ LOSSES OVER THE ENTIRE PERIOD:
-// Here we create a variable with a starting value of 0
-let netTotal = 0;
+let netTotal = 0; // Here we create a variable with a starting value of 0
 
-// We initialize a for loop that iterates over the array, 
-for (let i = 0; i < finances.length; i++) {
-  netTotal += finances[i][1]
+for (let i = 0; i < finances.length; i++) { // We initialize a for loop that iterates over the array
+  netTotal += finances[i][1] // This line adds the second element of the current subarray to the netTotal variable. The second element of each subarray is the financial amount on the right
 }
-console.log("Total PnL: $", netTotal)
+console.log("Total PnL: $", netTotal) // Console log the result
 
 
 // THE AVERAGE OF THE CHANGES IN PROFIT/ LOSSES OVER THE ENTIRE PERIOD:
-// Here we create a variable with a starting value of 0
-let totalChange = 0;
+let totalChange = 0; // Here we create a variable with a starting value of 0
 
-// We initialize a for loop that iterates over the array. Inside the loop we calculate the change between the current period value and the previous value.
-// We subtract the previous value from the current value to calculate the change.
-for (var i = 1; i < finances.length; i++) {
-  let change = finances[i][1] - finances[i - 1][1];
-  // The change is added to the 'totalChange' variable. This closes the loop.
-  totalChange += change;
+for (var i = 1; i < finances.length; i++) { // We initialize a for loop that iterates over the array.
+  let change = finances[i][1] - finances[i - 1][1]; // We calculate the change between the current period value and the previous value.
+  totalChange += change;   // The change is added to the 'totalChange' variable. This closes the loop.
 }
 
-// Now we calculate the average change by using the (Total/(Number of months - 1)) equation. Then finally we console log the result
-let averageChange = totalChange / (finances.length - 1)
-console.log("Average change: ", averageChange)
+let averageChange = totalChange / (finances.length - 1) // Now we calculate the average change by using the (Total/(Number of months - 1)) equation.
+console.log("Average change: ", averageChange) // Then finally we console log the result
 
-// Side note: From my research, starting from the second element and skipping the first when looping through data is a common practice when we want to calculate changes between consecutive elements ina dataset. When skipping the first element we're effectively calculating the change between the second element and the first element, the third with the second and so on. This allows us to calculate changes that correspond to the actual time periods represented.
+// Side note: From my research, starting from the second element and skipping the first when looping through data is a common practice when we want to calculate changes between consecutive elements in a dataset. When skipping the first element we're effectively calculating the change between the second element and the first element, the third with the second and so on. This allows us to calculate changes that correspond to the actual time periods represented.
 
 
 // THE GREATEST INCREASE IN PROFIT/ LOSSES (DATE AND AMOUNT) OVER THE ENTIRE PERIOD:
 // We've initialized a variable 'greatestIncrease' to keep track of the largest increase. The date and amount starts at null and 0.
 let greatestIncrease = { date: null, amount: 0};
 
-// We loop through the data starting from the second element.
-// Then for each month, we calculate the change in profit compared to the previous month by subtracting the previous profit from the current profit.
-for (let i = 1; i < finances.length; i++) {
-  let change = finances[i][1] - finances[i - 1][1]
+for (let i = 1; i < finances.length; i++) { // We loop through the data starting from the second element.
+  let change = finances[i][1] - finances[i - 1][1] // Then for each month, we calculate the change in profit compared to the previous month by subtracting the previous profit from the current profit.
 
   // Then if the calculated change is larger than the current 'greatestIncrease.amount', update the 'greatestIncrease' with the current date and amount.
   if (change > greatestIncrease.amount) {
@@ -139,10 +128,10 @@ for (let i = 1; i < finances.length; i++) {
     greatestIncrease.amount = change;
   }
 }
-// Finally we console log the result.
-console.log("Greatest increase in Profits/ Losses: ", greatestIncrease)
+console.log("Greatest increase in Profits/ Losses: ", greatestIncrease) // Finally we console log the result.
 
 // Essentially the code scans through the data, figures out how much profit changed from one month to the nect and keeps track of the larges positive change it finds along with the corresponding date.
+
 
 // THE GREATEST DECREASE IN PROFIT/ LOSSES (DATE AND AMOUNT) OVER THE ENTIRE PERIOD:
 let greatestDecrease = {date: null, amount: 0};
